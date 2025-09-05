@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin - Gerenciar Notícias</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <h1>Painel do Admin</h1>
+
+    <form id="formNoticia">
+      <input type="hidden" id="docId" />
+      <input
+        type="text"
+        id="titulo"
+        placeholder="Título da notícia"
+        required
+      /><br />
+
+      <label>Conteúdo:</label>
+      <div class="editor-bar">
+        <button type="button" onclick="formatar('bold')"><b>B</b></button>
+        <button type="button" onclick="formatar('italic')"><i>I</i></button>
+        <button type="button" onclick="formatar('underline')"><u>U</u></button>
+        <button type="button" onclick="formatar('insertUnorderedList')">
+          • Lista
+        </button>
+        <button type="button" onclick="formatar('insertOrderedList')">
+          1. Lista
+        </button>
+        <button type="button" onclick="formatar('formatBlock','<p>')">
+          Parágrafo
+        </button>
+      </div>
+
+      <div
+        id="editor"
+        contenteditable="true"
+        style="border: 1px solid #ccc; padding: 10px; min-height: 150px"
+      ></div>
+
+      <input
+        type="text"
+        id="imagem"
+        placeholder="URL da imagem"
+        required
+      /><br />
+      <select id="categoria" required>
+        <option value="">Selecione a categoria</option>
+        <option value="Política">Política</option>
+        <option value="Esportes">Esportes</option>
+        <option value="Tecnologia">Tecnologia</option>
+        <option value="Entretenimento">Entretenimento</option>
+        <option value="Economia">Economia</option></select
+      ><br />
+
+      <button type="submit">Publicar</button>
+    </form>
+
+    <h2>Notícias Publicadas</h2>
+    <div id="listaNoticias"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
